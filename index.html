@@ -12,116 +12,110 @@
             theme: {
                 extend: {
                     colors: {
-                        cyber: {
-                            dark: '#030712',
-                            card: '#0b0f19',
-                            cyan: '#00f3ff',
-                            magenta: '#ff007f',
-                            purple: '#9333ea',
-                            neonGreen: '#10b981'
+                        app: {
+                            dark: '#000000',
+                            card: '#090d16',
+                            border: '#1e293b',
+                            blue: '#2563eb',
+                            blueHover: '#1d4ed8',
+                            red: '#ef4444',
+                            redHover: '#dc2626'
                         }
                     },
                     fontFamily: {
-                        cyber: ['Orbitron', 'sans-serif'],
-                        sans: ['Inter', 'sans-serif']
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
                     }
                 }
             }
         }
     </script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background-color: #030712;
-            color: #f3f4f6;
+            background-color: #000000;
+            color: #ffffff;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
-        .cyber-grid {
-            background-size: 30px 30px;
-            background-image: 
-                linear-gradient(to right, rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 0, 127, 0.03) 1px, transparent 1px);
+        .app-panel {
+            background: #090d16;
+            border: 1px solid #1e293b;
         }
-        .glass-panel {
-            background: rgba(11, 15, 25, 0.92);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.05);
-        }
-        .glass-panel-magenta {
-            background: rgba(11, 15, 25, 0.92);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 0, 127, 0.25);
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.05);
-        }
-        .cyber-button {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(255, 0, 127, 0.2));
-            border: 1px solid #00f3ff;
+        .app-button {
+            background: #2563eb;
+            border: 1px solid #3b82f6;
             transition: all 0.2s ease;
         }
-        .cyber-button:hover {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.4), rgba(255, 0, 127, 0.4));
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
-            border-color: #ff007f;
-            transform: translateY(-1px);
+        .app-button:hover {
+            background: #1d4ed8;
         }
         ::-webkit-scrollbar {
-            width: 4px;
+            width: 6px;
+            height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #030712;
+            background: #000000;
         }
         ::-webkit-scrollbar-thumb {
-            background: #00f3ff55;
-            border-radius: 2px;
+            background: #334155;
+            border-radius: 3px;
         }
     </style>
 </head>
-<body class="cyber-grid min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
 
     <!-- Header -->
-    <header class="w-full glass-panel border-b border-cyan-500/30 sticky top-0 z-40 px-4 py-3">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+    <header class="w-full app-panel border-b border-slate-800 sticky top-0 z-40 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
             <div class="flex items-center space-x-3">
-                <div class="flex items-center justify-center w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-400 text-cyan-400">
-                    <i class="fa-solid fa-microchip text-lg"></i>
+                <div class="flex items-center justify-center w-9 h-9 rounded-lg bg-blue-600/20 border border-blue-500 text-blue-400">
+                    <i class="fa-solid fa-microchip text-base"></i>
                 </div>
                 <div>
-                    <h1 class="font-cyber text-sm md:text-base font-bold tracking-wider text-white">
-                        NEURAL-SENSI <span class="text-xs px-2 py-0.5 rounded bg-magenta/20 text-magenta border border-magenta/40 font-sans font-medium">AI v4.2</span>
+                    <h1 class="text-sm md:text-base font-bold tracking-wide text-white flex items-center gap-2">
+                        NEURAL-SENSI AI <span class="text-[10px] px-2 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/40 font-semibold">PRO v7.0</span>
                     </h1>
-                    <p class="text-[11px] text-slate-400">Generador inteligente para Free Fire (Escala 200)</p>
+                    <p id="headerSubtitle" class="text-xs text-slate-400">Calibración Neural Avanzada para Free Fire (Escala 200)</p>
                 </div>
             </div>
-            <div id="autoDetectBadge" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/35 text-xs">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                <span class="text-cyan-300 font-medium">Detectando dispositivo...</span>
+            
+            <div class="flex items-center gap-3">
+                <!-- Language Selector -->
+                <div class="flex items-center bg-black border border-slate-800 rounded-lg p-0.5 text-xs">
+                    <button onclick="setLanguage('es')" id="langEsBtn" class="px-2.5 py-1 rounded-md font-medium transition bg-blue-600 text-white">ES</button>
+                    <button onclick="setLanguage('en')" id="langEnBtn" class="px-2.5 py-1 rounded-md font-medium transition text-slate-400">EN</button>
+                </div>
+
+                <!-- Auto Detect Badge -->
+                <div id="autoDetectBadge" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                    <span id="detectStatusText" class="text-slate-300 font-medium">Escaneando hardware...</span>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Main Container -->
-    <main class="max-w-7xl mx-auto w-full p-3 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto">
+    <main class="max-w-7xl mx-auto w-full p-3.5 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto">
         
         <!-- Left Column: Parameters -->
-        <section class="lg:col-span-5 glass-panel rounded-2xl p-4 md:p-6 flex flex-col justify-between">
+        <section class="lg:col-span-5 app-panel rounded-xl p-4 md:p-5 flex flex-col justify-between shadow-lg">
             <div>
                 <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
-                    <h2 class="text-xs md:text-sm font-bold text-cyan-400 flex items-center gap-2">
-                        <i class="fa-solid fa-sliders text-magenta"></i> Parámetros de Hardware
+                    <h2 id="paramsTitle" class="text-xs md:text-sm font-bold text-blue-400 flex items-center gap-2 tracking-wide">
+                        <i class="fa-solid fa-sliders text-blue-500"></i> PARÁMETROS TÉCNICOS
                     </h2>
-                    <span class="text-[11px] text-slate-400">Configuración</span>
+                    <span id="paramsSubtitle" class="text-[11px] text-slate-400">Configuración Base</span>
                 </div>
 
-                <form id="sensiForm" class="space-y-3.5 text-xs md:text-sm">
+                <form id="sensiForm" class="space-y-3.5 text-xs md:text-sm" onsubmit="event.preventDefault();">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-[11px] font-medium text-cyan-300 mb-1"><i class="fa-solid fa-mobile-screen mr-1"></i> Marca</label>
-                            <select id="phoneBrand" class="w-full bg-slate-950 border border-cyan-500/30 rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-cyan-400">
+                            <label id="labelBrand" class="block text-[11px] font-medium text-slate-300 mb-1"><i class="fa-solid fa-mobile-screen mr-1 text-blue-400"></i> Marca del Dispositivo</label>
+                            <select id="phoneBrand" class="w-full bg-black border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-xs focus:outline-none focus:border-blue-500 transition">
                                 <option value="Samsung">Samsung</option>
                                 <option value="Xiaomi">Xiaomi</option>
                                 <option value="Redmi">Redmi</option>
@@ -141,188 +135,428 @@
                                 <option value="ZTE">ZTE</option>
                                 <option value="Sony">Sony</option>
                                 <option value="LG">LG</option>
-                                <option value="Otro">Otro Dispositivo</option>
+                                <option value="Otro">Otro Dispositivo / Other</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-[11px] font-medium text-cyan-300 mb-1"><i class="fa-solid fa-tag mr-1"></i> Modelo Específico</label>
-                            <input type="text" id="phoneModel" placeholder="Ej. Poco X3 Pro, S23" class="w-full bg-slate-950 border border-cyan-500/30 rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-cyan-400" required>
+                            <label id="labelModel" class="block text-[11px] font-medium text-slate-300 mb-1"><i class="fa-solid fa-tag mr-1 text-blue-400"></i> Modelo Específico</label>
+                            <input type="text" id="phoneModel" placeholder="Ej. Poco X3 Pro, S23 Ultra" class="w-full bg-black border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-xs focus:outline-none focus:border-blue-500 transition" required>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-[11px] font-medium text-cyan-300 mb-1"><i class="fa-solid fa-gauge-high mr-1"></i> Nivel de Sensibilidad</label>
-                            <select id="sensiLevel" class="w-full bg-slate-950 border border-cyan-500/30 rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-cyan-400">
-                                <option value="Baja">Baja (Precisión)</option>
-                                <option value="Media" selected>Media (Equilibrada)</option>
-                                <option value="Alta">Alta (Fluida)</option>
-                                <option value="Extrema">Extrema (Velocidad)</option>
+                            <label id="labelSpeed" class="block text-[11px] font-medium text-slate-300 mb-1"><i class="fa-solid fa-gauge-high mr-1 text-blue-400"></i> Nivel de Velocidad</label>
+                            <select id="sensiLevel" class="w-full bg-black border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-xs focus:outline-none focus:border-blue-500 transition">
+                                <option value="Baja">Baja (Precisión Milimétrica)</option>
+                                <option value="Media" selected>Media (Equilibrada Estándar)</option>
+                                <option value="Alta">Alta (Fluidez Ágil)</option>
+                                <option value="Extrema">Extrema (Máxima Velocidad)</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-[11px] font-medium text-cyan-300 mb-1"><i class="fa-solid fa-crosshairs mr-1"></i> Estilo de Juego</label>
-                            <select id="playStyle" class="w-full bg-slate-950 border border-cyan-500/30 rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-cyan-400">
-                                <option value="Rusher / Corta distancia">Rusher (Escopeta)</option>
-                                <option value="Precisión / Larga distancia">Precisión (Larga / AR)</option>
-                                <option value="Mixto (Todo terreno)" selected>Mixto (Versátil)</option>
+                            <label id="labelStyle" class="block text-[11px] font-medium text-slate-300 mb-1"><i class="fa-solid fa-crosshairs mr-1 text-blue-400"></i> Estilo de Combate</label>
+                            <select id="playStyle" class="w-full bg-black border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-xs focus:outline-none focus:border-blue-500 transition">
+                                <option value="Rusher / Corta distancia">Rusher (Escopeta / SMG)</option>
+                                <option value="Precisión / Larga distancia">Precisión (AR / Lejano)</option>
+                                <option value="Mixto (Todo terreno)" selected>Mixto (Versátil Total)</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- DPI Selector (Con DPI / Sin DPI - Max 593) -->
-                    <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
-                        <label class="text-[11px] font-medium text-magenta flex items-center gap-1.5">
-                            <i class="fa-solid fa-arrows-split-up-and-left"></i> Optimización de DPI (IA Automática - Máx. 593)
+                    <!-- DPI Selector -->
+                    <div class="p-3 rounded-lg bg-black border border-slate-800 space-y-2">
+                        <label id="labelDpiTitle" class="text-[11px] font-medium text-blue-400 flex items-center gap-1.5">
+                            <i class="fa-solid fa-arrows-split-up-and-left"></i> Optimización DPI (Límite Seguro: Máx. 593)
                         </label>
                         <div class="grid grid-cols-2 gap-2">
-                            <button type="button" id="dpiBtnYes" onclick="setDpiMode(true)" class="py-2 px-3 rounded-lg text-xs font-semibold border border-magenta bg-magenta/20 text-white transition">Con DPI</button>
-                            <button type="button" id="dpiBtnNo" onclick="setDpiMode(false)" class="py-2 px-3 rounded-lg text-xs font-semibold border border-slate-800 bg-slate-950 text-slate-400 transition">Sin DPI</button>
+                            <button type="button" id="dpiBtnYes" onclick="setDpiMode(true)" class="py-1.5 px-3 rounded-md text-xs font-medium border border-blue-600 bg-blue-600 text-white transition">Con DPI</button>
+                            <button type="button" id="dpiBtnNo" onclick="setDpiMode(false)" class="py-1.5 px-3 rounded-md text-xs font-medium border border-slate-800 bg-black text-slate-400 transition">Sin DPI</button>
                         </div>
                         <input type="hidden" id="useDpiState" value="true">
                     </div>
 
                     <!-- Fire Button Category -->
-                    <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
-                        <label class="text-[11px] font-medium text-cyan-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-bullseye"></i> Tamaño del Botón de Disparo
+                    <div class="p-3 rounded-lg bg-black border border-slate-800 space-y-2">
+                        <label id="labelFireBtnTitle" class="text-[11px] font-medium text-slate-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-bullseye text-blue-400"></i> Categoría del Botón de Disparo
                         </label>
-                        <select id="fireBtnCategory" class="w-full bg-slate-950 border border-cyan-500/30 rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-cyan-400">
-                            <option value="Pequeño">Pequeño (30% - 38%)</option>
-                            <option value="Mediano" selected>Mediano (40% - 49%)</option>
-                            <option value="Grande">Grande (50% - 58%)</option>
+                        <select id="fireBtnCategory" class="w-full bg-black border border-slate-800 rounded-lg px-3 py-2 text-slate-200 text-xs focus:outline-none focus:border-blue-500 transition">
+                            <option value="Pequeño">Pequeño (30% - 38% - Mayor Precisión)</option>
+                            <option value="Mediano" selected>Mediano (40% - 49% - Balanceado)</option>
+                            <option value="Grande">Grande (50% - 58% - Mayor Estabilidad)</option>
                         </select>
                     </div>
 
+                    <!-- Expanded Notes Textarea -->
                     <div>
-                        <label class="block text-[11px] font-medium text-slate-400 mb-1"><i class="fa-solid fa-note-sticky mr-1"></i> Notas Opcionales</label>
-                        <input type="text" id="userNotes" placeholder="Ej. Me cuesta dar rojos con M1887" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-cyan-400">
+                        <label class="block text-[11px] font-medium text-slate-300 mb-1 flex items-center justify-between">
+                            <span id="labelNotesTitle"><i class="fa-solid fa-note-sticky mr-1 text-blue-400"></i> Notas y Observaciones Detalladas</span>
+                            <span id="labelNotesHint" class="text-[10px] text-slate-500">Soporta texto extendido</span>
+                        </label>
+                        <textarea id="userNotes" rows="2" placeholder="Ej. Me cuesta dar tiros a la cabeza con la M1887..." class="w-full bg-black border border-slate-800 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500 transition resize-y"></textarea>
                     </div>
                 </form>
             </div>
 
-            <div class="mt-5 pt-3 border-t border-slate-800">
-                <button type="button" onclick="generateSensitivityAI()" class="w-full cyber-button py-3 px-4 rounded-xl font-cyber font-bold text-xs md:text-sm tracking-wider text-white shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-wand-magic-sparkles text-cyan-400"></i>
-                    Generar Sensi con IA
+            <div class="mt-4 pt-3 border-t border-slate-800">
+                <button type="button" onclick="checkLimitAndGenerate()" class="w-full app-button py-3 px-4 rounded-lg font-bold text-xs md:text-sm tracking-wide text-white shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-wand-magic-sparkles text-white"></i>
+                    <span id="generateBtnText">Generar Calibración Neural</span>
                 </button>
+                <div class="mt-2 text-center">
+                    <span id="dailyCounterText" class="text-[11px] text-slate-400">Generaciones disponibles hoy: <strong id="remainingCount" class="text-blue-400 font-semibold">5/5</strong></span>
+                </div>
             </div>
         </section>
 
         <!-- Right Column: Results -->
-        <section class="lg:col-span-7 glass-panel-magenta rounded-2xl p-4 md:p-6 flex flex-col justify-between">
+        <section class="lg:col-span-7 app-panel rounded-xl p-4 md:p-5 flex flex-col justify-between shadow-lg border-slate-800">
             <div>
                 <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
                     <div class="flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 rounded-full bg-magenta"></span>
-                        <h2 class="text-xs md:text-sm font-bold text-magenta">Telemetría y Resultados (Escala 0-200)</h2>
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                        <h2 id="resultsTitle" class="text-xs md:text-sm font-bold text-slate-100 tracking-wide">TELEMETRÍA Y RESULTADOS (ESCALA 0-200)</h2>
                     </div>
-                    <div id="aiStatusBadge" class="text-xs px-2.5 py-1 rounded bg-slate-900 border border-slate-700 text-slate-300">
-                        Estado: <span class="text-cyan-400 font-semibold">En espera</span>
+                    <div id="aiStatusBadge" class="text-xs px-2.5 py-1 rounded-full bg-black border border-slate-800 text-slate-300">
+                        <span id="statusLabel">Estado:</span> <span id="statusValue" class="text-blue-400 font-medium">En espera</span>
                     </div>
                 </div>
 
-                <div id="resultsContent" class="space-y-4">
+                <div id="resultsContent" class="space-y-3.5">
                     <!-- Placeholder State -->
-                    <div id="placeholderState" class="py-12 text-center flex flex-col items-center justify-center space-y-3">
-                        <div class="w-16 h-16 rounded-2xl bg-slate-900/90 border border-cyan-500/30 flex items-center justify-center text-cyan-400/50">
-                            <i class="fa-solid fa-brain text-3xl"></i>
+                    <div id="placeholderState" class="py-14 text-center flex flex-col items-center justify-center space-y-3">
+                        <div class="w-14 h-14 rounded-xl bg-black border border-slate-800 flex items-center justify-center text-blue-400">
+                            <i class="fa-solid fa-brain text-2xl"></i>
                         </div>
-                        <div class="max-w-md space-y-1">
-                            <h3 class="text-xs md:text-sm font-semibold text-slate-200">Sistema listo para calibrar</h3>
-                            <p class="text-xs text-slate-400 leading-relaxed">Selecciona tus preferencias y obtén la configuración ideal adaptada a tu dispositivo Android (hasta escala 200).</p>
+                        <div class="max-w-md space-y-1 px-4">
+                            <h3 id="placeholderTitle" class="text-xs md:text-sm font-semibold text-slate-200">Núcleo de IA preparado</h3>
+                            <p id="placeholderDesc" class="text-xs text-slate-400 leading-relaxed">Configura tus parámetros técnicos a la izquierda y ejecuta la calibración para obtener valores exactos adaptados a tu dispositivo Android.</p>
                         </div>
                     </div>
 
                     <!-- Active Results State -->
-                    <div id="activeResults" class="hidden space-y-4 text-xs md:text-sm">
-                        <div class="p-3 rounded-xl bg-slate-900/90 border border-cyan-500/30 flex items-start gap-2.5">
-                            <div class="text-cyan-400 mt-0.5"><i class="fa-solid fa-robot"></i></div>
-                            <div class="space-y-0.5">
-                                <div class="text-[11px] font-semibold text-cyan-300">Diagnóstico experto de IA</div>
-                                <p id="aiSummaryText" class="text-xs text-slate-300 leading-relaxed"></p>
+                    <div id="activeResults" class="hidden space-y-3 text-xs md:text-sm">
+                        <!-- AI Summary Box -->
+                        <div class="p-3 rounded-lg bg-black border border-slate-800 space-y-1">
+                            <div class="flex items-center justify-between">
+                                <div id="diagnosisTitle" class="text-[11px] font-semibold text-blue-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-robot"></i> Diagnóstico y Recomendación Experta
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-mono">IA v7.0</span>
+                            </div>
+                            <div class="max-h-28 overflow-y-auto pr-1">
+                                <p id="aiSummaryText" class="text-xs text-slate-300 leading-relaxed font-normal"></p>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="sensiSlidersGrid">
-                            <!-- Populated dynamically -->
-                        </div>
+                        <!-- Sensi Sliders Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="sensiSlidersGrid"></div>
 
+                        <!-- DPI & Fire Button Cards -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                            <div class="p-3 rounded-xl bg-slate-900/90 border border-magenta/30 flex items-center justify-between">
-                                <div>
-                                    <div class="text-[11px] font-semibold text-magenta">DPI Sugerido (Máx 593)</div>
-                                    <div id="resDpi" class="font-cyber font-bold text-sm text-white">---</div>
+                            <div class="p-3 rounded-lg bg-black border border-slate-800 flex items-center justify-between">
+                                <div class="space-y-0.5">
+                                    <div id="dpiCardTitle" class="text-[11px] font-semibold text-slate-400">DPI Sugerido (Máx 593)</div>
+                                    <div id="resDpi" class="font-bold text-sm text-white">---</div>
                                 </div>
-                                <i class="fa-solid fa-mobile-button text-xl text-magenta/70"></i>
+                                <div class="w-9 h-9 rounded-lg bg-blue-600/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                                    <i class="fa-solid fa-mobile-button text-sm"></i>
+                                </div>
                             </div>
-                            <div class="p-3 rounded-xl bg-slate-900/90 border border-cyan-500/30 flex items-center justify-between">
-                                <div>
-                                    <div class="text-[11px] font-semibold text-cyan-400">Botón de Disparo</div>
-                                    <div id="resFireBtn" class="font-cyber font-bold text-sm text-white">---</div>
+                            <div class="p-3 rounded-lg bg-black border border-slate-800 flex items-center justify-between">
+                                <div class="space-y-0.5">
+                                    <div id="fireCardTitle" class="text-[11px] font-semibold text-slate-400">Botón de Disparo</div>
+                                    <div id="resFireBtn" class="font-bold text-sm text-white">---</div>
                                 </div>
-                                <i class="fa-solid fa-bullseye text-xl text-cyan-400/70"></i>
+                                <div class="w-9 h-9 rounded-lg bg-blue-600/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                                    <i class="fa-solid fa-bullseye text-sm"></i>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
-                            <div class="text-xs text-emerald-400 flex items-center gap-1.5 font-semibold">
-                                <i class="fa-solid fa-bolt"></i> Técnicas de Levantamiento de Mira
+                        <!-- Dragging Tips -->
+                        <div class="p-3 rounded-lg bg-black border border-slate-800 space-y-1.5">
+                            <div id="tipsCardTitle" class="text-xs text-emerald-400 flex items-center gap-1.5 font-semibold">
+                                <i class="fa-solid fa-bolt"></i> Técnicas Óptimas de Levantamiento de Mira
                             </div>
-                            <ul id="draggingTipsList" class="space-y-1 text-xs text-slate-300 list-disc list-inside"></ul>
+                            <ul id="draggingTipsList" class="space-y-1 text-xs text-slate-300 list-disc list-inside leading-relaxed"></ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-5 pt-3 border-t border-slate-800 flex flex-col sm:flex-row gap-3 items-center justify-between">
+            <div class="mt-4 pt-3 border-t border-slate-800 flex flex-col sm:flex-row gap-3 items-center justify-between">
                 <div class="text-[11px] text-slate-400">
-                    Modelo: <span class="text-cyan-400 font-mono">gemini-3-flash-preview</span>
+                    Motor: <span class="text-blue-400 font-mono">gemini-3-flash-preview</span>
                 </div>
-                <button type="button" id="copyBtn" onclick="copyFullConfig()" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-900 border border-cyan-500/50 hover:bg-cyan-500/10 text-cyan-300 text-xs font-semibold transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                    <i class="fa-solid fa-copy"></i> Copiar configuración completa
+                <button type="button" id="copyBtn" onclick="copyFullConfig()" class="w-full sm:w-auto px-4 py-2 rounded-lg bg-black border border-slate-700 hover:bg-slate-900 text-slate-200 text-xs font-medium transition flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+                    <i class="fa-solid fa-copy"></i> <span id="copyBtnText">Copiar Configuración Completa</span>
                 </button>
             </div>
         </section>
     </main>
 
-    <!-- Modern Photorealistic Error Modal -->
-    <div id="errorModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden p-4">
-        <div class="glass-panel-magenta max-w-md w-full rounded-2xl p-6 space-y-4 border border-red-500/40 shadow-2xl">
-            <div class="flex items-center gap-3 text-red-400">
-                <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center">
-                    <i class="fa-solid fa-triangle-exclamation text-lg"></i>
+    <!-- Daily Limit Modal (Fixed & Visible) -->
+    <div id="limitModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden p-4">
+        <div class="app-panel max-w-md w-full rounded-xl p-5 space-y-3.5 border border-red-500/50 shadow-2xl">
+            <div class="flex items-center gap-3 text-red-500">
+                <div class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-500">
+                    <i class="fa-solid fa-triangle-exclamation text-base"></i>
                 </div>
                 <div>
-                    <h3 class="text-sm font-bold text-white">Error de Calibración Neural</h3>
-                    <p class="text-[11px] text-red-400">Fallo en la respuesta de la IA</p>
+                    <h3 id="limitModalTitle" class="text-sm font-bold text-white">Límite Diario Alcanzado</h3>
+                    <p id="limitModalSubtitle" class="text-[11px] text-red-400">Restricción de calibraciones</p>
                 </div>
             </div>
-            <p id="errorModalMsg" class="text-xs text-slate-300 leading-relaxed bg-slate-950/80 p-3 rounded-xl border border-slate-800"></p>
-            <button onclick="closeErrorModal()" class="w-full py-2.5 rounded-xl bg-red-500/20 border border-red-500/50 hover:bg-red-500/30 text-red-200 text-xs font-semibold transition shadow-lg">
-                Entendido / Reintentar
+            <p id="limitModalMsg" class="text-xs text-slate-300 leading-relaxed bg-black p-3 rounded-lg border border-slate-800">
+                Solo se puede generar un máximo de 5 sensibilidades por día. Este límite se restablecerá automáticamente mañana.
+            </p>
+            <div class="flex items-center gap-2 pt-1">
+                <input type="checkbox" id="dontShowAgain" class="w-4 h-4 rounded bg-black border-slate-700 text-blue-600 focus:ring-blue-500">
+                <label id="labelDontShow" for="dontShowAgain" class="text-xs text-slate-400 cursor-pointer">No mostrar este aviso de nuevo</label>
+            </div>
+            <button onclick="closeLimitModal()" class="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition shadow-md">
+                <span id="limitModalBtn">Entendido</span>
             </button>
         </div>
     </div>
 
-    <!-- Custom Toast -->
+    <!-- Error Modal -->
+    <div id="errorModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden p-4">
+        <div class="app-panel max-w-md w-full rounded-xl p-5 space-y-3.5 border border-red-500/50 shadow-2xl">
+            <div class="flex items-center gap-3 text-red-500">
+                <div class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-500">
+                    <i class="fa-solid fa-triangle-exclamation text-base"></i>
+                </div>
+                <div>
+                    <h3 id="errorModalTitle" class="text-sm font-bold text-white">Error de Calibración Neural</h3>
+                    <p id="errorModalSubtitle" class="text-[11px] text-red-400">Falla en la respuesta del motor de IA</p>
+                </div>
+            </div>
+            <p id="errorModalMsg" class="text-xs text-slate-300 leading-relaxed bg-black p-3 rounded-lg border border-slate-800"></p>
+            <button onclick="closeErrorModal()" class="w-full py-2.5 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xs font-semibold transition shadow-md">
+                <span id="errorModalBtn">Entendido / Reintentar</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification -->
     <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="glass-panel px-3.5 py-2.5 rounded-xl border border-cyan-400 flex items-center gap-2.5 shadow-xl text-xs">
-            <i class="fa-solid fa-circle-check text-cyan-400 text-base"></i>
+        <div class="app-panel px-3.5 py-2.5 rounded-xl border border-blue-500 flex items-center gap-3 shadow-2xl text-xs">
+            <div class="text-blue-400 text-base"><i class="fa-solid fa-circle-check"></i></div>
             <div>
                 <div id="toastTitle" class="font-semibold text-white">Notificación</div>
-                <div id="toastMsg" class="text-slate-300">Acción realizada correctamente.</div>
+                <div id="toastMsg" class="text-slate-300">Operación exitosa.</div>
             </div>
         </div>
     </div>
 
+    <!-- JavaScript Core Logic -->
     <script>
+        const translations = {
+            es: {
+                subtitle: "Calibración Neural Avanzada para Free Fire (Escala 200)",
+                detecting: "Escaneando hardware...",
+                detected: "Dispositivo detectado: ",
+                manualMode: "Modo Manual Android",
+                paramsTitle: "PARÁMETROS TÉCNICOS",
+                paramsSubtitle: "Configuración Base",
+                labelBrand: "Marca del Dispositivo",
+                labelModel: "Modelo Específico",
+                labelSpeed: "Nivel de Velocidad",
+                labelStyle: "Estilo de Combate",
+                labelDpi: "Optimización DPI (Límite Seguro: Máx. 593)",
+                dpiYes: "Con DPI",
+                dpiNo: "Sin DPI",
+                labelFireBtn: "Categoría del Botón de Disparo",
+                notesTitle: "Notas y Observaciones Detalladas",
+                notesHint: "Soporta texto extendido",
+                notesPlaceholder: "Ej. Me cuesta dar tiros a la cabeza con la M1887...",
+                generateBtn: "Generar Calibración Neural",
+                dailyCounter: "Generaciones disponibles hoy: ",
+                resultsTitle: "TELEMETRÍA Y RESULTADOS (ESCALA 0-200)",
+                statusLabel: "Estado:",
+                statusWaiting: "En espera",
+                statusProcessing: "Procesando IA...",
+                statusCalibrated: "Calibrado con éxito",
+                statusError: "Error de Sistema",
+                placeholderTitle: "Núcleo de IA preparado",
+                placeholderDesc: "Configura tus parámetros técnicos a la izquierda y ejecuta la calibración para obtener valores exactos adaptados a tu dispositivo Android.",
+                diagnosisTitle: "Diagnóstico y Recomendación Experta",
+                dpiCard: "DPI Sugerido (Máx 593)",
+                fireCard: "Botón de Disparo",
+                tipsCard: "Técnicas Óptimas de Levantamiento de Mira",
+                copyBtn: "Copiar Configuración Completa",
+                limitTitle: "Límite Diario Alcanzado",
+                limitSubtitle: "Restricción de calibraciones",
+                limitMsg: "Solo se puede generar un máximo de 5 sensibilidades por día. Este límite se restablecerá automáticamente mañana.",
+                dontShow: "No mostrar este aviso de nuevo",
+                limitBtn: "Entendido",
+                errorTitle: "Error de Calibración Neural",
+                errorSubtitle: "Falla en la respuesta del motor de IA",
+                errorBtn: "Entendido / Reintentar",
+                toastSuccessTitle: "¡Calibración exitosa!",
+                toastSuccessMsg: "Sensibilidad generada y optimizada.",
+                toastCopyTitle: "Portapapeles actualizado",
+                toastCopyMsg: "Configuración completa copiada correctamente.",
+                toastReqTitle: "Campo requerido",
+                toastReqMsg: "Por favor ingresa el modelo específico de tu teléfono."
+            },
+            en: {
+                subtitle: "Advanced Neural Calibration for Free Fire (Scale 200)",
+                detecting: "Scanning hardware...",
+                detected: "Device detected: ",
+                manualMode: "Android Manual Mode",
+                paramsTitle: "TECHNICAL PARAMETERS",
+                paramsSubtitle: "Base Configuration",
+                labelBrand: "Device Brand",
+                labelModel: "Specific Model",
+                labelSpeed: "Speed Level",
+                labelStyle: "Combat Style",
+                labelDpi: "DPI Optimization (Safe Limit: Max 593)",
+                dpiYes: "With DPI",
+                dpiNo: "Without DPI",
+                labelFireBtn: "Fire Button Category",
+                notesTitle: "Detailed Notes & Observations",
+                notesHint: "Supports extended text",
+                notesPlaceholder: "E.g., I struggle with headshots using M1887...",
+                generateBtn: "Generate Neural Calibration",
+                dailyCounter: "Remaining generations today: ",
+                resultsTitle: "TELEMETRY & RESULTS (SCALE 0-200)",
+                statusLabel: "Status:",
+                statusWaiting: "Waiting",
+                statusProcessing: "Processing AI...",
+                statusCalibrated: "Successfully Calibrated",
+                statusError: "System Error",
+                placeholderTitle: "AI Core Ready",
+                placeholderDesc: "Configure your technical parameters on the left and run calibration to get exact values tailored to your Android device.",
+                diagnosisTitle: "Expert Diagnosis & Recommendation",
+                dpiCard: "Suggested DPI (Max 593)",
+                fireCard: "Fire Button",
+                tipsCard: "Optimal Dragging Techniques",
+                copyBtn: "Copy Full Configuration",
+                limitTitle: "Daily Limit Reached",
+                limitSubtitle: "Calibration restriction",
+                limitMsg: "You can only generate a maximum of 5 sensitivities per day. This limit will automatically reset tomorrow.",
+                dontShow: "Do not show this warning again",
+                limitBtn: "Got it",
+                errorTitle: "Neural Calibration Error",
+                errorSubtitle: "AI engine response failure",
+                errorBtn: "Got it / Retry",
+                toastSuccessTitle: "Calibration Successful!",
+                toastSuccessMsg: "Sensitivity generated and optimized.",
+                toastCopyTitle: "Clipboard Updated",
+                toastCopyMsg: "Full configuration copied successfully.",
+                toastReqTitle: "Required Field",
+                toastReqMsg: "Please enter the specific model of your phone."
+            }
+        };
+
+        let currentLang = 'es';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+
+            document.getElementById('langEsBtn').className = lang === 'es' ? "px-2.5 py-1 rounded-md font-medium transition bg-blue-600 text-white" : "px-2.5 py-1 rounded-md font-medium transition text-slate-400";
+            document.getElementById('langEnBtn').className = lang === 'en' ? "px-2.5 py-1 rounded-md font-medium transition bg-blue-600 text-white" : "px-2.5 py-1 rounded-md font-medium transition text-slate-400";
+
+            document.getElementById('headerSubtitle').innerText = t.subtitle;
+            document.getElementById('paramsTitle').innerHTML = `<i class="fa-solid fa-sliders text-blue-500"></i> ${t.paramsTitle}`;
+            document.getElementById('paramsSubtitle').innerText = t.paramsSubtitle;
+            document.getElementById('labelBrand').innerHTML = `<i class="fa-solid fa-mobile-screen mr-1 text-blue-400"></i> ${t.labelBrand}`;
+            document.getElementById('labelModel').innerHTML = `<i class="fa-solid fa-tag mr-1 text-blue-400"></i> ${t.labelModel}`;
+            document.getElementById('labelSpeed').innerHTML = `<i class="fa-solid fa-gauge-high mr-1 text-blue-400"></i> ${t.labelSpeed}`;
+            document.getElementById('labelStyle').innerHTML = `<i class="fa-solid fa-crosshairs mr-1 text-blue-400"></i> ${t.labelStyle}`;
+            document.getElementById('labelDpiTitle').innerHTML = `<i class="fa-solid fa-arrows-split-up-and-left"></i> ${t.labelDpi}`;
+            document.getElementById('dpiBtnYes').innerText = t.dpiYes;
+            document.getElementById('dpiBtnNo').innerText = t.dpiNo;
+            document.getElementById('labelFireBtnTitle').innerHTML = `<i class="fa-solid fa-bullseye text-blue-400"></i> ${t.labelFireBtn}`;
+            document.getElementById('labelNotesTitle').innerHTML = `<i class="fa-solid fa-note-sticky mr-1 text-blue-400"></i> ${t.notesTitle}`;
+            document.getElementById('labelNotesHint').innerText = t.notesHint;
+            document.getElementById('userNotes').placeholder = t.notesPlaceholder;
+            document.getElementById('generateBtnText').innerText = t.generateBtn;
+            document.getElementById('dailyCounterText').innerHTML = `${t.dailyCounter}<strong id="remainingCount" class="text-blue-400 font-semibold">${getRemainingGenerations()}</strong>`;
+            document.getElementById('resultsTitle').innerText = t.resultsTitle;
+            document.getElementById('statusLabel').innerText = t.statusLabel;
+            document.getElementById('placeholderTitle').innerText = t.placeholderTitle;
+            document.getElementById('placeholderDesc').innerText = t.placeholderDesc;
+            document.getElementById('diagnosisTitle').innerHTML = `<i class="fa-solid fa-robot"></i> ${t.diagnosisTitle}`;
+            document.getElementById('dpiCardTitle').innerText = t.dpiCard;
+            document.getElementById('fireCardTitle').innerText = t.fireCard;
+            document.getElementById('tipsCardTitle').innerHTML = `<i class="fa-solid fa-bolt"></i> ${t.tipsCard}`;
+            document.getElementById('copyBtnText').innerText = t.copyBtn;
+            document.getElementById('limitModalTitle').innerText = t.limitTitle;
+            document.getElementById('limitModalSubtitle').innerText = t.limitSubtitle;
+            document.getElementById('limitModalMsg').innerText = t.limitMsg;
+            document.getElementById('labelDontShow').innerText = t.dontShow;
+            document.getElementById('limitModalBtn').innerText = t.limitBtn;
+            document.getElementById('errorModalTitle').innerText = t.errorTitle;
+            document.getElementById('errorModalSubtitle').innerText = t.errorSubtitle;
+            document.getElementById('errorModalBtn').innerText = t.errorBtn;
+        }
+
+        // Daily Limit Logic with automatic date reset
+        const MAX_DAILY_GENERATIONS = 5;
+
+        function getDailyData() {
+            const todayStr = new Date().toISOString().slice(0, 10);
+            let data = JSON.parse(localStorage.getItem('neural_sensi_limits') || '{}');
+            if (data.date !== todayStr) {
+                data = { date: todayStr, count: 0, dontShowLimit: false };
+                localStorage.setItem('neural_sensi_limits', JSON.stringify(data));
+            }
+            return data;
+        }
+
+        function getRemainingGenerations() {
+            const data = getDailyData();
+            return Math.max(0, MAX_DAILY_GENERATIONS - data.count);
+        }
+
+        function updateCounterUI() {
+            const rem = getRemainingGenerations();
+            const counterEl = document.getElementById('remainingCount');
+            if (counterEl) counterEl.innerText = `${rem}/${MAX_DAILY_GENERATIONS}`;
+        }
+
+        function checkLimitAndGenerate() {
+            const data = getDailyData();
+            if (data.count >= MAX_DAILY_GENERATIONS) {
+                if (!data.dontShowLimit) {
+                    document.getElementById('limitModal').classList.remove('hidden');
+                } else {
+                    showToast(translations[currentLang].limitTitle, translations[currentLang].limitMsg);
+                }
+                return;
+            }
+            generateSensitivityAI();
+        }
+
+        function closeLimitModal() {
+            const dontShow = document.getElementById('dontShowAgain').checked;
+            if (dontShow) {
+                let data = getDailyData();
+                data.dontShowLimit = true;
+                localStorage.setItem('neural_sensi_limits', JSON.stringify(data));
+            }
+            document.getElementById('limitModal').classList.add('hidden');
+        }
+
         // Automatic Device Detection
         function detectDevice() {
             const ua = navigator.userAgent || navigator.vendor || window.opera;
             const brandSelect = document.getElementById('phoneBrand');
             const modelInput = document.getElementById('phoneModel');
-            const detectBadge = document.getElementById('autoDetectBadge');
+            const detectStatusText = document.getElementById('detectStatusText');
+
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang && browserLang.startsWith('en')) {
+                setLanguage('en');
+            } else {
+                setLanguage('es');
+            }
 
             let detectedBrand = "Otro";
             let detectedModelName = "";
@@ -367,10 +601,11 @@
                 if (detectedModelName && !modelInput.value) {
                     modelInput.value = detectedModelName;
                 }
-                detectBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span><span class="text-emerald-400 font-medium">Android: ${detectedBrand}</span>`;
+                detectStatusText.innerText = `${translations[currentLang].detected}${detectedBrand}`;
             } else {
-                detectBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400"></span><span class="text-amber-300 font-medium">Modo Manual Android</span>`;
+                detectStatusText.innerText = translations[currentLang].manualMode;
             }
+            updateCounterUI();
         }
 
         // DPI Mode switch handler
@@ -380,11 +615,11 @@
             document.getElementById('useDpiState').value = state ? "true" : "false";
 
             if (state) {
-                btnYes.className = "py-2 px-3 rounded-lg text-xs font-semibold border border-magenta bg-magenta/20 text-white transition";
-                btnNo.className = "py-2 px-3 rounded-lg text-xs font-semibold border border-slate-800 bg-slate-950 text-slate-400 transition";
+                btnYes.className = "py-1.5 px-3 rounded-md text-xs font-medium border border-blue-600 bg-blue-600 text-white transition";
+                btnNo.className = "py-1.5 px-3 rounded-md text-xs font-medium border border-slate-800 bg-black text-slate-400 transition";
             } else {
-                btnNo.className = "py-2 px-3 rounded-lg text-xs font-semibold border border-magenta bg-magenta/20 text-white transition";
-                btnYes.className = "py-2 px-3 rounded-lg text-xs font-semibold border border-slate-800 bg-slate-950 text-slate-400 transition";
+                btnNo.className = "py-1.5 px-3 rounded-md text-xs font-medium border border-blue-600 bg-blue-600 text-white transition";
+                btnYes.className = "py-1.5 px-3 rounded-md text-xs font-medium border border-slate-800 bg-black text-slate-400 transition";
             }
         }
 
@@ -395,7 +630,7 @@
             toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
             setTimeout(() => {
                 toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-            }, 3000);
+            }, 3500);
         }
 
         function showErrorModal(message) {
@@ -407,6 +642,12 @@
             document.getElementById('errorModal').classList.add('hidden');
         }
 
+        function sanitizeText(str) {
+            const temp = document.createElement('div');
+            temp.textContent = str;
+            return temp.innerHTML;
+        }
+
         // Main AI Generation Function
         async function generateSensitivityAI() {
             const brand = document.getElementById('phoneBrand').value;
@@ -416,23 +657,23 @@
             const useDpi = document.getElementById('useDpiState').value === "true";
             const fireCategory = document.getElementById('fireBtnCategory').value;
             const notes = document.getElementById('userNotes').value.trim();
+            const t = translations[currentLang];
 
             if (!model) {
-                showToast('Campo requerido', 'Por favor ingresa el modelo específico de tu teléfono.');
+                showToast(t.toastReqTitle, t.toastReqMsg);
                 document.getElementById('phoneModel').focus();
                 return;
             }
 
-            const statusBadge = document.getElementById('aiStatusBadge');
-            statusBadge.innerHTML = 'Estado: <span class="text-magenta animate-pulse">Calibrando...</span>';
-            const btn = document.querySelector('button[onclick="generateSensitivityAI()"]');
+            const statusValue = document.getElementById('statusValue');
+            statusValue.innerHTML = `<span class="text-blue-400 animate-pulse">${t.statusProcessing}</span>`;
+            const btn = document.querySelector('button[onclick="checkLimitAndGenerate()"]');
             btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-cyan-400"></i> Procesando red neural...';
 
             const apiKey = "AQ.Ab8RN6K3xxGvhBb-GWEg2gImd40I35GLWX60x7GrTzB98FbfNw";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
 
-            const systemPrompt = "Eres un coach profesional de esports y experto en optimización táctica para Free Fire en Android. La sensibilidad máxima en Free Fire es 200. Tu tarea es generar la configuración de sensibilidad perfecta en escala de 0 a 200. Si el usuario selecciona 'Con DPI', debes elegir un DPI óptimo automático con un límite estricto de máximo 593; si es 'Sin DPI', indícalo claramente. Si el usuario elige categoría de botón de disparo (Pequeño: 30-38%, Mediano: 40-49%, Grande: 50-58%), asígnale un valor exacto dentro de esa categoría. Responde ESTRICTAMENTE en formato JSON válido sin texto adicional fuera del JSON: { \"general\": number (0-200), \"redDot\": number (0-200), \"scope2x\": number (0-200), \"scope4x\": number (0-200), \"awm\": number (0-200), \"camera\": number (0-200), \"dpiRecommended\": number (<=593, o 0 si sin DPI), \"dpiNote\": string, \"fireButtonSize\": number, \"fireButtonPosition\": string, \"draggingTips\": [string, string, string], \"expertSummary\": string }";
+            const systemPrompt = "Eres un coach profesional de esports y experto en optimización táctica para Free Fire en Android. La sensibilidad máxima en Free Fire es estrictamente 200. Tu tarea es generar la configuración de sensibilidad perfecta en escala de 0 a 200. Si el usuario selecciona 'Con DPI', debes elegir un DPI óptimo automático con un límite estricto de máximo 593; si es 'Sin DPI', indícalo claramente con 0 o 'Nativo'. Si el usuario elige categoría de botón de disparo (Pequeño: 30-38%, Mediano: 40-49%, Grande: 50-58%), asígnale un valor exacto dentro de esa categoría. Responde ESTRICTAMENTE en formato JSON válido sin texto adicional fuera del JSON: { \"general\": number (0-200), \"redDot\": number (0-200), \"scope2x\": number (0-200), \"scope4x\": number (0-200), \"awm\": number (0-200), \"camera\": number (0-200), \"dpiRecommended\": number (<=593, o 0 si sin DPI), \"dpiNote\": string, \"fireButtonSize\": number, \"fireButtonPosition\": string, \"draggingTips\": [string, string, string], \"expertSummary\": string }";
 
             const userPrompt = `Genera la calibración perfecta de Free Fire para Android:
 - Dispositivo: ${brand} ${model}
@@ -440,7 +681,8 @@
 - Estilo: ${playStyle}
 - Estado de DPI: ${useDpi ? 'Con DPI automático (Límite máx 593)' : 'Sin DPI (Nativo)'}
 - Categoría Botón de Disparo: ${fireCategory}
-- Notas: ${notes || 'Ninguna'}`;
+- Notas del usuario: ${notes || 'Ninguna'}
+- Idioma de respuesta: ${currentLang.toUpperCase()}`;
 
             const payload = {
                 contents: [{ parts: [{ text: userPrompt }] }],
@@ -456,27 +698,35 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-                if (!response.ok) throw new Error(`Error de conexión HTTP: ${response.status}`);
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
                 const result = await response.json();
 
                 const candidate = result.candidates?.[0];
                 if (candidate && candidate.content?.parts?.[0]?.text) {
-                    const data = JSON.parse(candidate.content.parts[0].text);
+                    let rawText = candidate.content.parts[0].text;
+                    rawText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+                    const data = JSON.parse(rawText);
                     if (data.dpiRecommended > 593) data.dpiRecommended = 593;
+
+                    // Increment daily count
+                    let dailyData = getDailyData();
+                    dailyData.count += 1;
+                    localStorage.setItem('neural_sensi_limits', JSON.stringify(dailyData));
+                    updateCounterUI();
+
                     renderResults(data, brand, model, useDpi);
-                    statusBadge.innerHTML = 'Estado: <span class="text-emerald-400 font-semibold">Calibrado</span>';
+                    statusValue.innerHTML = `<span class="text-emerald-400 font-medium">${t.statusCalibrated}</span>`;
                     document.getElementById('copyBtn').disabled = false;
-                    showToast('¡Calibración exitosa!', 'Sensibilidad generada correctamente.');
+                    showToast(t.toastSuccessTitle, t.toastSuccessMsg);
                 } else {
-                    throw new Error('La respuesta de la red neural no tiene el formato esperado.');
+                    throw new Error('AI response structure invalid.');
                 }
             } catch (error) {
                 console.error(error);
-                statusBadge.innerHTML = 'Estado: <span class="text-red-400 font-semibold">Error</span>';
-                showErrorModal(`Ocurrió un error al procesar la solicitud con la inteligencia artificial: ${error.message}. Por favor verifica tu conexión e intenta de nuevo.`);
+                statusValue.innerHTML = `<span class="text-red-500 font-medium">${t.statusError}</span>`;
+                showErrorModal(`Ocurrió un error al procesar la solicitud con la inteligencia artificial: ${error.message}. Por favor verifica tu conexión.`);
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles text-cyan-400"></i> Generar Sensi con IA';
             }
         }
 
@@ -491,33 +741,33 @@
             slidersGrid.innerHTML = '';
 
             const sensiConfigs = [
-                { label: 'General (Cámara)', val: data.general },
-                { label: 'Mira Punto Rojo', val: data.redDot },
-                { label: 'Mira 2X', val: data.scope2x },
-                { label: 'Mira 4X', val: data.scope4x },
-                { label: 'Mira AWM', val: data.awm },
-                { label: 'Cámara 360°', val: data.camera }
+                { label: currentLang === 'es' ? 'General (Cámara)' : 'General (Camera)', val: data.general },
+                { label: currentLang === 'es' ? 'Mira Punto Rojo' : 'Red Dot Scope', val: data.redDot },
+                { label: currentLang === 'es' ? 'Mira 2X' : '2X Scope', val: data.scope2x },
+                { label: currentLang === 'es' ? 'Mira 4X' : '4X Scope', val: data.scope4x },
+                { label: currentLang === 'es' ? 'Mira AWM' : 'AWM Scope', val: data.awm },
+                { label: currentLang === 'es' ? 'Cámara 360°' : '360° Camera', val: data.camera }
             ];
 
             sensiConfigs.forEach(item => {
-                const safeVal = Math.min(Math.max(item.val, 0), 200);
+                const safeVal = Math.min(Math.max(Number(item.val) || 0, 0), 200);
                 const percentage = (safeVal / 200) * 100;
                 const card = document.createElement('div');
-                card.className = 'p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5';
+                card.className = 'p-2.5 rounded-lg bg-black border border-slate-800 space-y-1.5';
                 card.innerHTML = `
                     <div class="flex justify-between items-center text-xs">
-                        <span class="text-slate-300">${item.label}</span>
-                        <span class="font-cyber font-bold text-cyan-400">${safeVal}</span>
+                        <span class="text-slate-300 font-normal">${sanitizeText(item.label)}</span>
+                        <span class="font-bold text-blue-400 text-xs">${safeVal}</span>
                     </div>
                     <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden border border-slate-800">
-                        <div class="bg-gradient-to-r from-cyan-400 to-magenta h-full rounded-full transition-all duration-700" style="width: ${percentage}%"></div>
+                        <div class="bg-blue-600 h-full rounded-full transition-all duration-500" style="width: ${percentage}%"></div>
                     </div>
                 `;
                 slidersGrid.appendChild(card);
             });
 
-            document.getElementById('resDpi').innerText = useDpi ? `${data.dpiRecommended} (${data.dpiNote || 'Óptimo'})` : 'Desactivado (Sin DPI)';
-            document.getElementById('resFireBtn').innerText = `${data.fireButtonSize}% - ${data.fireButtonPosition || 'Inferior Centro'}`;
+            document.getElementById('resDpi').innerText = useDpi ? `${data.dpiRecommended} (${data.dpiNote || 'Óptimo'})` : (currentLang === 'es' ? 'Desactivado (Nativo)' : 'Disabled (Native)');
+            document.getElementById('resFireBtn').innerText = `${data.fireButtonSize}% - ${data.fireButtonPosition || (currentLang === 'es' ? 'Inferior Centro' : 'Bottom Center')}`;
 
             const tipsList = document.getElementById('draggingTipsList');
             tipsList.innerHTML = '';
@@ -534,21 +784,22 @@
             const brand = document.getElementById('phoneBrand').value;
             const model = document.getElementById('phoneModel').value;
             const summary = document.getElementById('aiSummaryText').innerText;
+            const t = translations[currentLang];
             
-            let textToCopy = `=== NEURAL-SENSI AI // FREE FIRE ANDROID ===\n`;
-            textToCopy += `Dispositivo: ${brand} ${model}\n`;
-            textToCopy += `Diagnóstico: ${summary}\n\n`;
+            let textToCopy = `=== NEURAL-SENSI AI v7.0 // FREE FIRE ANDROID ===\n`;
+            textToCopy += `Device: ${brand} ${model}\n`;
+            textToCopy += `Diagnosis: ${summary}\n\n`;
             
             const cards = document.querySelectorAll('#sensiSlidersGrid > div');
             cards.forEach(card => {
                 const title = card.querySelector('span:first-child').innerText;
-                const val = card.querySelector('.font-cyber').innerText;
+                const val = card.querySelector('.font-bold').innerText;
                 textToCopy += `${title}: ${val}\n`;
             });
 
             textToCopy += `DPI: ${document.getElementById('resDpi').innerText}\n`;
-            textToCopy += `Botón de Disparo: ${document.getElementById('resFireBtn').innerText}\n`;
-            textToCopy += `==============================================`;
+            textToCopy += `Fire Button: ${document.getElementById('resFireBtn').innerText}\n`;
+            textToCopy += `================================================`;
 
             const textarea = document.createElement('textarea');
             textarea.value = textToCopy;
@@ -556,9 +807,9 @@
             textarea.select();
             try {
                 document.execCommand('copy');
-                showToast('Portapapeles actualizado', 'Configuración copiada correctamente.');
+                showToast(t.toastCopyTitle, t.toastCopyMsg);
             } catch (err) {
-                showToast('Error', 'No se pudo copiar al portapapeles.');
+                showToast('Error', 'Clipboard error.');
             }
             document.body.removeChild(textarea);
         }
